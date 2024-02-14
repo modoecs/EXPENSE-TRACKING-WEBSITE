@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Expense Tracker</h2>
+    <form id="expenseForm">
+        <label for="BALANCE">AMOUNT BALANCE:</label>
+        <input type="number" id="ammount" placeholder="Enter amount" required>
+        <label for="amount">Amount:</label>
+       
+        <input type="number" id="amount" placeholder="Enter amount" required>
+        <label for="category">Category:</label>
+        <input type="text" id="category" placeholder="Enter category" required>
+        <button onclick="addToTable()">Add Expense</button>
+        <button onclick="calculate">total</button>
+        total:<span id="total"></span>
+    </form>
+    <h3>Expense List</h3>
+    <table id="expenseTable">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody id="expenseBody"></tbody>
+    </table>
+    Total:<span id="total">0</span>
+    <script>
+        function addToTable() {
+          var amount = document.getElementById("amount").value;
+         
+          var category = document.getElementById("category").value;
+          var table = document.getElementById("expenseTable");
+          var row = table.insertRow(-1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+         
+          cell1.textContent = amount;
+          cell2.textContent = category;
+
+          calculateTotal();
+        }
+    </script>
+      <h3>Financial Report</h3>
+      <div id="financialReport"></div>
+  </div>
+  
+  <script>
+  
+  function calculateTotal() {
+        var table = document.getElementById("expenseTable");
+        var rows = table.rows;
+        var total = 0;
+        for (var i = 1; i < rows.length; i++){
+            var cell = rows[i].cells[1];
+            total += parseFloat(cell.textContent) || 0;
+        }
+        document.getElementById("total").textContent = total;
+    }
+
+    
+    </script>
+    
+      
+</body>
+    </html>
+
